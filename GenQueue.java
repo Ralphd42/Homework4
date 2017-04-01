@@ -75,4 +75,5 @@ public class GenQueue<StackItem> {
         {
             return nxt;
         }
-}
+}}
+

@@ -23,6 +23,18 @@ public class HW4 {
         System.out.println(pop1);
         System.out.println("------------------------------------------");
         System.out.println(gs);
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
+        GnStack<String> gn11 = new GnStack();
+        gn11.Push("a1");
+        gn11.Push("b2");
+        gn11.Push("c31");
+        
+        
+        
+        
+        
+        
     }
     
 }
