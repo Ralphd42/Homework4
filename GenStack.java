@@ -43,7 +43,7 @@ public class GenStack<StackItem> {
     public StackItem Peek()
     {
         if(isEmpty()){
-            throw new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException("Empty Stack");
         }
         return head.getItem();
     }

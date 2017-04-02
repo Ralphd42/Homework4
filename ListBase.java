@@ -16,7 +16,14 @@ public class ListBase<StackItem> {
     }
     public String toString()
     {
-    
+        StringBuilder sb = new StringBuilder();
+        Node tmp = head;
+        while( tmp!=null )
+        {
+            sb.append(tmp.itm.toString());
+            tmp=tmp.GetNext();
+        }
+        return sb.toString();
     }
     
     
