@@ -31,7 +31,7 @@ public class HW4 {
         gn11.Push("c31");
         GenQueue <String> q = new GenQueue<String>();
         q.Enqueue("ONE");
-        q.Enqueue("Two");
+        q.Enqueue("Two").Enqueue("THREE").Enqueue("nine").Enqueue("Eleven");
         System.out.println(q);
         
         

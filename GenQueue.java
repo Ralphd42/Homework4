@@ -13,7 +13,7 @@ public class GenQueue<StackItem> extends ListBase<StackItem> {
     
     private Node tail;
     
-    public void Enqueue(StackItem item) {
+    public GenQueue<StackItem> Enqueue(StackItem item) {
         Node lasttail = tail;
         tail = new Node(item,null);
         if (isEmpty()){ 
@@ -22,6 +22,7 @@ public class GenQueue<StackItem> extends ListBase<StackItem> {
         else {
             lasttail.SetNext(tail);
         }
+        return this;
     }
     
     /**
