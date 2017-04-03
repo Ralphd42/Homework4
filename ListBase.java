@@ -21,6 +21,7 @@ public class ListBase<StackItem> {
         while( tmp!=null )
         {
             sb.append(tmp.itm.toString());
+            sb.append("\n");
             tmp=tmp.GetNext();
         }
         return sb.toString();

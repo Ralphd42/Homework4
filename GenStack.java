@@ -19,7 +19,7 @@ public class GenStack<StackItem> {
     public StackItem Pop(){
         StackItem retval =null;
             if(isEmpty()){
-            throw new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException("Empty Stack");
         }
         retval = head.getItem();
         

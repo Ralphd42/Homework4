@@ -9,8 +9,8 @@ package hw4;
  *
  * @author ralph
  */
-public class GenQueue<StackItem> {
-    private Node head;
+public class GenQueue<StackItem> extends ListBase<StackItem> {
+    
     private Node tail;
     
     public void Enqueue(StackItem item) {
@@ -53,27 +53,5 @@ public class GenQueue<StackItem> {
         return head==null;
     }
     
-    private class Node{
-        private StackItem itm;
-        private Node( StackItem stackitem, Node next)
-        {
-            itm =stackitem;
-            nxt = next;
-        
-        }
-        
-        StackItem getItem ()
-        {
-            return itm;
-        }
-        private Node nxt;
-        public void SetNext( Node n)
-        {
-            nxt =n;
-        }
-        public Node GetNext ()
-        {
-            return nxt;
-        }
-}}
+    }
 

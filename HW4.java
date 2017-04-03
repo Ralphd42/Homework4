@@ -29,6 +29,10 @@ public class HW4 {
         gn11.Push("a1");
         gn11.Push("b2");
         gn11.Push("c31");
+        GenQueue <String> q = new GenQueue<String>();
+        q.Enqueue("ONE");
+        q.Enqueue("Two");
+        System.out.println(q);
         
         
         
