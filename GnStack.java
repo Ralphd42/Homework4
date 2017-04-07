@@ -32,6 +32,13 @@ public class GnStack<StackItem> extends ListBase<StackItem> {
         return this;
     }
     
+    public StackItem Peek()
+    {
+        if(isEmpty()){
+            throw new java.util.NoSuchElementException("Empty Stack");
+        }
+        return head.getItem();
+    }
     
     
 }

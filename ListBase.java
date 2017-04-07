@@ -50,16 +50,16 @@ public class ListBase<StackItem> {
         
         }
         
-        StackItem getItem ()
+        protected StackItem getItem ()
         {
             return itm;
         }
         private Node nxt;
-        public void SetNext( Node n)
+        protected void SetNext( Node n)
         {
             nxt =n;
         }
-        public Node GetNext ()
+        protected Node GetNext ()
         {
             return nxt;
         }
