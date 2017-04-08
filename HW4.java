@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -19,13 +20,38 @@ public class HW4 {
 
         if (args.length > 0) {
             System.out.print("Testing from File: ");
-            System.out.println("Working Directory = "
-                    + System.getProperty("user.dir"));
+            //System.out.println("Working Directory = "
+            //        + System.getProperty("user.dir"));
             System.out.println(args[0]);
-            GnStack<String> TestStack1 = new GnStack<>();
-            FillStack(TestStack1, args[0]);
-            System.out.println(TestStack1);
-
+            
+            
+            // Test Item 1 from Homework
+            TextHeader("Item 1");
+            Stack<String> TestStack1 = new Stack<>();
+            Queue<String> TestQueue1 = new Queue<>();
+            int numAddded =FillStackFromFile(TestStack1, args[0]);
+            if(numAddded>0){
+                
+                FillQueueWithStack(TestStack1,TestQueue1);
+            }else
+            {
+                TextHeader("Item 1 failed to load");
+            }
+            // Test Item 2 from Home work
+            TextHeader("");
+            TextHeader("Item 2");
+            numAddded = FillQueueFromFile( TestQueue1 ,args[0]);
+            if(numAddded>0){
+                
+                FillStackWithQueue(TestStack1,TestQueue1);
+            }else
+            {
+                TextHeader("Item 2 failed to load");
+            }
+            
+            
+            //FillQueueFromFile(Queue,args[0]);
+            //FillStackWithQueue(TestStack1,Queue);
             /*GenStack<String> gs = new GenStack();
             gs.Push("one").Push("two");
             System.out.println(gs);
@@ -35,11 +61,11 @@ public class HW4 {
             System.out.println(gs);
             System.out.println("------------------------------------------");
             System.out.println("------------------------------------------");
-            GnStack<String> gn11 = new GnStack();
+            Stack<String> gn11 = new Stack();
             gn11.Push("a1");
             gn11.Push("b2");
             gn11.Push("c31");
-            GenQueue<String> q = new GenQueue<String>();
+            Queue<String> q = new Queue<String>();
             q.Enqueue("ONE");
             q.Enqueue("Two").Enqueue("THREE").Enqueue("nine").Enqueue("Eleven");
             System.out.println(q);
@@ -60,7 +86,7 @@ public class HW4 {
      * @param FullFileName - the full file name to load
      * @return number of Items added
      */
-    public static int FillStack(GnStack<String> stack, String FullFileName) {
+    public static int FillStackFromFile(Stack<String> stack, String FullFileName) {
         int retval = 0;
         File InputFile = new File(FullFileName);
         try {
@@ -82,5 +108,99 @@ public class HW4 {
         return retval;
 
     }
+    
+    public static void FillQueueWithStack(Stack<String> stack , Queue<String> queue){
+        TextHeader("Stack Contents(toString)");
+        System.out.println(stack);
+        TextHeader("Moving Stack to queue");
+        
+        do{
+            
+            String Item = stack.Pop();
+            queue.Enqueue(Item);
+            System.out.println("queuing " + Item);
+        } while (!stack.isEmpty());
+        TextHeader("Queue Contents(ToString)");
+        System.out.println(queue);
+        TextHeader("Queue via dequing");
+        boolean hasitems = true;
+        while (hasitems){
+            try{
+                System.out.println(queue.Dequeue());
+            }
+            catch(NoSuchElementException nse)
+            {
+                hasitems=false;
+            }
+        }
+        
+    }
+            
+    public static void FillStackWithQueue(Stack<String> stack , Queue<String> queue){
+        TextHeader("Queue Contents");
+        System.out.println(queue);
+        TextHeader("Moving Queue to Stack");
+        
+        
+        do{
+            
+            String Item = queue.Dequeue();
+            stack.Push(Item);
+            System.out.println("pushing " + Item);
+        } while (!queue.isEmpty());
+        TextHeader("Stack  using(ToString)");
+        System.out.println(stack);
+        TextHeader("Stack using pop");
+        boolean hasitems = true;
+        while (hasitems){
+            try{
+                System.out.println(stack.Pop());
+            }
+            catch(NoSuchElementException nse)
+            {
+                hasitems=false;
+            }
+        }
+        
+        
+        
+        
+        
+    }
+    
+    public static int FillQueueFromFile(Queue<String> queue, String FullFileName) {
+        int retval = 0;
+        File InputFile = new File(FullFileName);
+        try {
+            FileReader inputFileReader = new FileReader(InputFile);
+            BufferedReader InputReader = new BufferedReader(inputFileReader);
 
+            String line;
+            while ((line = InputReader.readLine()) != null) {
+                if (line.trim().length() > 0) {
+                    queue.Enqueue(line.trim());
+                    retval++;
+                }
+
+            }
+            inputFileReader.close();
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
+        }
+        return retval;
+
+    }
+    
+    public static void TextHeader(String header){
+        System.out.println();
+        System.out.println(header);
+        div();
+    
+    }
+    public static void div()
+    {
+        System.out.println("----------------------------------");
+    }
+    
+    
 }

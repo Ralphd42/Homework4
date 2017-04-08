@@ -9,11 +9,11 @@ package hw4;
  *
  * @author ralph
  */
-public class GenQueue<StackItem> extends ListBase<StackItem> {
+public class Queue<StackItem> extends ListBase<StackItem> {
     
     private Node tail;
     
-    public GenQueue<StackItem> Enqueue(StackItem item) {
+    public Queue<StackItem> Enqueue(StackItem item) {
         Node lasttail = tail;
         tail = new Node(item,null);
         if (isEmpty()){ 

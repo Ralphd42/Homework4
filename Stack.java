@@ -9,7 +9,7 @@ package hw4;
  *
  * @author ralph
  */
-public class GnStack<StackItem> extends ListBase<StackItem> {
+public class Stack<StackItem> extends ListBase<StackItem> {
     /**
      * Pops the stack
      * @return returns and pops top item in Stack
@@ -17,7 +17,7 @@ public class GnStack<StackItem> extends ListBase<StackItem> {
     public StackItem Pop(){
         StackItem retval =null;
             if(isEmpty()){
-            throw new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException("Empty Stack");
         }
         retval = head.getItem();
         
@@ -25,7 +25,7 @@ public class GnStack<StackItem> extends ListBase<StackItem> {
         return retval;
 
 }
-    public GnStack<StackItem> Push(StackItem stackitem)
+    public Stack<StackItem> Push(StackItem stackitem)
     {
         Node lasthead = head;
         head = new Node(stackitem,lasthead);
