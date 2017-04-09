@@ -45,10 +45,12 @@ public class HW4 {
             } else {
                 TextHeader("Item 2 failed to load");
             }
+            
+            //Test Item 3 from Home work
             TextHeader("");
             TextHeader("Item 3");
-            numAddded = FillQueueFromFile(TestQueue1, args[0]);
-            Stack<String> Stack2 = new  Stack<>();
+            numAddded = FillStackFromFile(TestStack1, args[0]);
+            Stack<String> Stack2 = new Stack<>();
             if (numAddded > 0) {
 
                 FillStackWithStack(TestStack1, Stack2);
@@ -56,26 +58,6 @@ public class HW4 {
                 TextHeader("Item 3 failed to load");
             }
 
-            //FillQueueFromFile(Queue,args[0]);
-            //FillStackWithQueue(TestStack1,Queue);
-            /*GenStack<String> gs = new GenStack();
-            gs.Push("one").Push("two");
-            System.out.println(gs);
-            String pop1 = gs.Pop();
-            System.out.println(pop1);
-            System.out.println("------------------------------------------");
-            System.out.println(gs);
-            System.out.println("------------------------------------------");
-            System.out.println("------------------------------------------");
-            Stack<String> gn11 = new Stack();
-            gn11.Push("a1");
-            gn11.Push("b2");
-            gn11.Push("c31");
-            Queue<String> q = new Queue<String>();
-            q.Enqueue("ONE");
-            q.Enqueue("Two").Enqueue("THREE").Enqueue("nine").Enqueue("Eleven");
-            System.out.println(q);
-             */
         } else {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
@@ -187,22 +169,25 @@ public class HW4 {
         return retval;
 
     }
-    
+
     public static void FillStackWithStack(Stack<String> stack, Stack<String> stackto) {
         TextHeader("Stack Contents");
         System.out.println(stack);
         TextHeader("Moving Stack to new Stack");
-        
+        boolean hasitems = true;
         do {
-
-            String Item = stack.Pop();
-            stack.Push(Item);
-            System.out.println("pushing " + Item);
-        } while (!stack.isEmpty());
+            try {
+                String Item = stack.Pop();
+                stackto.Push(Item);
+                System.out.println("pushing " + Item);
+            } catch (NoSuchElementException nse) {
+                hasitems = false;
+            }
+        } while (hasitems);
         TextHeader("Stack  using(ToString)");
         System.out.println(stackto);
         TextHeader("Stack using pop");
-        boolean hasitems = true;
+        hasitems = true;
         while (hasitems) {
             try {
                 System.out.println(stackto.Pop());
@@ -212,11 +197,6 @@ public class HW4 {
         }
 
     }
-    
-    
-    
-    
-    
 
     public static void TextHeader(String header) {
         System.out.println();

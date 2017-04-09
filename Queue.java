@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hw4;
 
 /**
@@ -11,8 +6,15 @@ package hw4;
  */
 public class Queue<StackItem> extends ListBase<StackItem> {
     
-    private Node tail;
+    private final String ErrorMessage ="Queue is empty.";
+    private Node tail;  // the tail of the list
     
+    /**
+     *  Queues an item onto the end of the list
+     * This returns the this pointer so that calls to Enqueue can be chained
+     * @param item
+     * @return  this
+     */
     public Queue<StackItem> Enqueue(StackItem item) {
         Node lasttail = tail;
         tail = new Node(item,null);
@@ -26,13 +28,13 @@ public class Queue<StackItem> extends ListBase<StackItem> {
     }
     
     /**
-     * 
-     * @return 
+     * Deque retuerns item from head of linked list and removes it
+     * @return returns the current head
      */
     public StackItem Dequeue()
     {
         if( isEmpty()){
-            throw new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException(ErrorMessage);
         }
         StackItem retval = head.getItem();
         head = head.GetNext();
@@ -41,18 +43,19 @@ public class Queue<StackItem> extends ListBase<StackItem> {
         }
         return retval;
     }
-    
+    /**
+     * Returns but does not remove top item in Queue
+     * @return current head item;
+     */
     public StackItem Peek()
     {
         if( isEmpty()){
-            throw new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException(ErrorMessage);
         }
         return head.getItem();
     }
     
-    public boolean isEmpty(){
-        return head==null;
-    }
+    
     
     }
 
