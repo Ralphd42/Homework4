@@ -30,6 +30,10 @@
               <Component id="txtAddToStack" min="-2" pref="166" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="btn1toQ" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnqtos2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnEmpty" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -76,6 +80,8 @@
                           <Component id="btnLoadStack" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtAddToStack" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn1toQ" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnqtos2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEmpty" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -110,14 +116,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextArea" name="txtQueue">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtQueueActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextArea" name="txtStack2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=""/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -149,7 +149,9 @@
         <Component class="javax.swing.JTextArea" name="taOutput">
           <Properties>
             <Property name="columns" type="int" value="20"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="wrapStyleWord" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -165,6 +167,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn1toQActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnqtos2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Queue to Stack 2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnqtos2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnEmpty">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Empty Stack 2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmptyActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

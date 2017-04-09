@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 
 /**
+ * Tested class for Stack and Queue
  *
  * @author ralph
  */
@@ -17,18 +18,43 @@ public class HW4 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        if (args.length <= 0) {
+            TextHeader("Console Test no file provided");
+            Stack<String> TestStack1 = new Stack<>();
+            TestStack1.Push("TV").Push("Rocket").Push("Tree").Push("Oasis").Push("Apple");
+            Queue<String> TestQueue = new Queue<>();
+            TextHeader("Stack Contents");
+            System.out.println(TestStack1);
+            TextHeader("Moving Stack to Queue");
+            do {
 
-        if (args.length > 0) {
+                String Item = TestStack1.Pop();
+                TestQueue.Enqueue(Item);
+                System.out.println("queuing " + Item);
+            } while (!TestStack1.isEmpty());
+            TextHeader("Queue Contents");
+            TextHeader("Moving Queue to Stack");
+            do {
+
+                String Item = TestQueue.Dequeue();
+                TestStack1.Push(Item);
+                System.out.println("pushing " + Item);
+            } while (!TestQueue.isEmpty());
+            TextHeader("Stack  using(ToString)");
+            System.out.println(TestStack1);
+
+        } else if (args[0].equals("-f")) {
+            String fname = args[1];
             System.out.print("Testing from File: ");
             //System.out.println("Working Directory = "
             //        + System.getProperty("user.dir"));
-            System.out.println(args[0]);
+            System.out.println(fname);
 
             // Test Item 1 from Homework
             TextHeader("Item 1");
             Stack<String> TestStack1 = new Stack<>();
             Queue<String> TestQueue1 = new Queue<>();
-            int numAddded = FillStackFromFile(TestStack1, args[0]);
+            int numAddded = FillStackFromFile(TestStack1, fname);
             if (numAddded > 0) {
 
                 FillQueueWithStack(TestStack1, TestQueue1);
@@ -38,18 +64,18 @@ public class HW4 {
             // Test Item 2 from Home work
             TextHeader("");
             TextHeader("Item 2");
-            numAddded = FillQueueFromFile(TestQueue1, args[0]);
+            numAddded = FillQueueFromFile(TestQueue1, fname);
             if (numAddded > 0) {
 
                 FillStackWithQueue(TestStack1, TestQueue1);
             } else {
                 TextHeader("Item 2 failed to load");
             }
-            
+
             //Test Item 3 from Home work
             TextHeader("");
             TextHeader("Item 3");
-            numAddded = FillStackFromFile(TestStack1, args[0]);
+            numAddded = FillStackFromFile(TestStack1, fname);
             Stack<String> Stack2 = new Stack<>();
             if (numAddded > 0) {
 
@@ -58,12 +84,15 @@ public class HW4 {
                 TextHeader("Item 3 failed to load");
             }
 
-        } else {
+        } else if (args[0].equals("-g")) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new TestForm().setVisible(true);
                 }
             });
+        } else {
+            System.out.println("Invalid entry");
+
         }
 
     }
@@ -97,6 +126,12 @@ public class HW4 {
 
     }
 
+    /**
+     * Fills a queue with a stack by poping from Stack to queing toQueue
+     *
+     * @param stack from
+     * @param queue to
+     */
     public static void FillQueueWithStack(Stack<String> stack, Queue<String> queue) {
         TextHeader("Stack Contents(toString)");
         System.out.println(stack);
@@ -122,6 +157,12 @@ public class HW4 {
 
     }
 
+    /**
+     * deques from queue to stack
+     *
+     * @param stack to
+     * @param queue from
+     */
     public static void FillStackWithQueue(Stack<String> stack, Queue<String> queue) {
         TextHeader("Queue Contents");
         System.out.println(queue);
@@ -147,6 +188,14 @@ public class HW4 {
 
     }
 
+    /**
+     * *
+     * fills a queue with contents of a file
+     *
+     * @param queue queue to fill
+     * @param FullFileName file to get data from
+     * @return
+     */
     public static int FillQueueFromFile(Queue<String> queue, String FullFileName) {
         int retval = 0;
         File InputFile = new File(FullFileName);
@@ -170,6 +219,13 @@ public class HW4 {
 
     }
 
+    /**
+     * *
+     * move contents from one stack to another
+     *
+     * @param stack stack from
+     * @param stackto stack to
+     */
     public static void FillStackWithStack(Stack<String> stack, Stack<String> stackto) {
         TextHeader("Stack Contents");
         System.out.println(stack);
@@ -198,6 +254,12 @@ public class HW4 {
 
     }
 
+    /**
+     * *
+     * tester function for easy printing of text to console
+     *
+     * @param header
+     */
     public static void TextHeader(String header) {
         System.out.println();
         System.out.println(header);
@@ -205,6 +267,9 @@ public class HW4 {
 
     }
 
+    /**
+     * helper function for making div in console
+     */
     public static void div() {
         System.out.println("----------------------------------");
     }

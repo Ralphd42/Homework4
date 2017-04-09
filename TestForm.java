@@ -5,7 +5,7 @@
  */
 package hw4;
 
-import javax.swing.DefaultListModel;
+
 
 /**
  *
@@ -22,9 +22,9 @@ public class TestForm extends javax.swing.JFrame {
         StackHWItem2= new Stack<>();
        QueueHwItem1 = new Queue<>();
     }
-    private Stack<String> StackHWItem1;
-    private Queue<String> QueueHwItem1;
-    private Stack<String> StackHWItem2;
+    private Stack<String> StackHWItem1;  //Stack 1
+    private Queue<String> QueueHwItem1;  //Queue
+    private Stack<String> StackHWItem2;  // Stack 2
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,16 +46,14 @@ public class TestForm extends javax.swing.JFrame {
         taOutput = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         btn1toQ = new javax.swing.JButton();
+        btnqtos2 = new javax.swing.JButton();
+        btnEmpty = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Stack 1");
 
         txtStack1.setEditable(false);
-
-        
-
-        txtStack2.setText("");
 
         jLabel2.setText("Queue");
 
@@ -69,7 +67,9 @@ public class TestForm extends javax.swing.JFrame {
         });
 
         taOutput.setColumns(20);
+        taOutput.setLineWrap(true);
         taOutput.setRows(5);
+        taOutput.setWrapStyleWord(true);
         jScrollPane1.setViewportView(taOutput);
 
         jLabel4.setText("output");
@@ -78,6 +78,20 @@ public class TestForm extends javax.swing.JFrame {
         btn1toQ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn1toQActionPerformed(evt);
+            }
+        });
+
+        btnqtos2.setText("Queue to Stack 2");
+        btnqtos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnqtos2ActionPerformed(evt);
+            }
+        });
+
+        btnEmpty.setText("Empty Stack 2");
+        btnEmpty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmptyActionPerformed(evt);
             }
         });
 
@@ -92,6 +106,10 @@ public class TestForm extends javax.swing.JFrame {
                 .addComponent(txtAddToStack, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btn1toQ)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnqtos2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEmpty)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -127,7 +145,9 @@ public class TestForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLoadStack)
                             .addComponent(txtAddToStack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn1toQ))
+                            .addComponent(btn1toQ)
+                            .addComponent(btnqtos2)
+                            .addComponent(btnEmpty))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -148,13 +168,19 @@ public class TestForm extends javax.swing.JFrame {
     private void txtQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQueueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQueueActionPerformed
-
+/**
+ * Add item to Stack 1
+ * @param evt 
+ */
     private void btnLoadStackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadStackActionPerformed
         StackHWItem1.Push(txtAddToStack.getText());
         txtStack1.setText(StackHWItem1.toString());
         
     }//GEN-LAST:event_btnLoadStackActionPerformed
-
+/**
+ * Move item from stack 1 to queue
+ * @param evt 
+ */
     private void btn1toQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1toQActionPerformed
         
         try{
@@ -171,6 +197,52 @@ public class TestForm extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btn1toQActionPerformed
+/**
+ * Move item from queue to stack 2
+ * @param evt 
+ */
+    private void btnqtos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnqtos2ActionPerformed
+       try{
+        String val =QueueHwItem1.Dequeue();
+        StackHWItem2.Push(val);
+        taOutput.setText("Dequeue " + val+" from Queue  and Pushed to Stack 2" );
+        txtQueue.setText(QueueHwItem1.toString());
+        txtStack2.setText(StackHWItem2.toString());
+        }catch(java.util.NoSuchElementException nse)
+        {
+            taOutput.setText("Queue is Empty");
+        
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnqtos2ActionPerformed
+/**
+ * Empty Stack 2 to output
+ * @param evt 
+ */
+    private void btnEmptyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmptyActionPerformed
+        
+        boolean hasitems = true;
+        StringBuilder sb = new StringBuilder();
+        while (hasitems){
+            try{
+            String val =  StackHWItem2.Pop();
+            sb.append("Popped " + val);
+            sb.append("\n\r");
+            
+            }catch(java.util.NoSuchElementException nse)
+        {
+            hasitems=false;
+        
+        }
+            taOutput.setText(sb.toString());
+            
+        }
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmptyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +250,9 @@ public class TestForm extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1toQ;
+    private javax.swing.JButton btnEmpty;
     private javax.swing.JButton btnLoadStack;
+    private javax.swing.JButton btnqtos2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
