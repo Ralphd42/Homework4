@@ -25,6 +25,8 @@ public class HW4 {
             Queue<String> TestQueue = new Queue<>();
             TextHeader("Stack Contents");
             System.out.println(TestStack1);
+            TextHeader("Test Peek");
+            System.out.println(TestStack1.Peek());
             TextHeader("Moving Stack to Queue");
             do {
 
@@ -33,6 +35,9 @@ public class HW4 {
                 System.out.println("queuing " + Item);
             } while (!TestStack1.isEmpty());
             TextHeader("Queue Contents");
+            System.out.println(TestQueue);
+            TextHeader("Test Peek");
+            System.out.println(TestQueue.Peek());
             TextHeader("Moving Queue to Stack");
             do {
 
